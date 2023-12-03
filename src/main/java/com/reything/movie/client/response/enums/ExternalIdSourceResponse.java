@@ -1,6 +1,9 @@
-package com.reything.movie.model.enums;
+package com.reything.movie.client.response.enums;
 
-public enum ExternalIdSource {
+import lombok.Getter;
+
+@Getter
+public enum ExternalIdSourceResponse {
     IMDb("imdb_id"),
     Facebook("facebook_id"),
     Instagram("instagram_id"),
@@ -12,11 +15,7 @@ public enum ExternalIdSource {
 
     private final String value;
 
-    ExternalIdSource(String value) {
+    ExternalIdSourceResponse(String value) {
         this.value = value;
-    }
-
-    public String getValue() {
-        return value;
     }
 }

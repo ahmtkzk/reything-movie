@@ -1,8 +1,8 @@
 package com.reything.movie.client;
 
+import com.reything.movie.client.response.*;
 import com.reything.movie.config.FeignConfiguration;
-import com.reything.movie.model.dto.ResultDTO;
-import com.reything.movie.model.enums.ExternalIdSource;
+import com.reything.movie.client.response.enums.ExternalIdSourceResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,42 +13,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface TmdbClient {
 
     @GetMapping("/discover/movie")
-    ResponseEntity<ResultDTO> getMovieList(
+    ResponseEntity<DiscoverMovieResponse> getMovieList(
             @RequestParam(name = "page", required = false) Integer page,
             @RequestParam(name = "year", required = false) Integer year
     );
 
     @GetMapping("/find/{external_id}")
-    ResponseEntity<ResultDTO> getExternalMovieById( //TODO Return types will change.
+    ResponseEntity<FindExternalIdResponse> getExternalMovieById(
             @PathVariable(name = "external_id") String external_id,
-            @RequestParam(name = "external_source") ExternalIdSource externalSource);
+            @RequestParam(name = "external_source") ExternalIdSourceResponse externalSource);
 
     @GetMapping("/genre/movie/list")
-    ResponseEntity<ResultDTO> getMovieGenreList();//TODO Return types will change.
+    ResponseEntity<GenreMovieListResponse> getMovieGenreList();
 
     @GetMapping("/movie/popular")
-    ResponseEntity<ResultDTO> getPopularMovieList(//TODO Return types will change.
+    ResponseEntity<PopularMovieListResponse> getPopularMovieList(
             @RequestParam(name = "page", required = false) Integer page,
             @RequestParam(name = "year", required = false) Integer year
     );
 
     @GetMapping("/movie/{movie_id}")
-    ResponseEntity<ResultDTO> getMovieDetailById(//TODO Return types will change.
+    ResponseEntity<MovieResponse> getMovieDetailById(
             @PathVariable(name = "movie_id") int movieId
     );
 
     @GetMapping("/movie/{movie_id}/external_ids")
-    ResponseEntity<ResultDTO> getMovieExternalIdListByTmdbId(//TODO Return types will change.
+    ResponseEntity<MovieExternalIdListResponse> getMovieExternalIdListByTmdbId(
             @PathVariable(name = "movie_id") int movie_id
     );
 
     @GetMapping("/movie/{movie_id}/keywords")
-    ResponseEntity<ResultDTO> getMovieKeywordList(//TODO Return types will change.
+    ResponseEntity<MovieKeywordListResponse> getMovieKeywordList(
             @PathVariable(name = "movie_id") int movie_id
     );
 
     @GetMapping("/movie/{movie_id}/images")
-    ResponseEntity<ResultDTO> getMovieImageList( //TODO Return types will change.
+    ResponseEntity<MovieImageListResponse> getMovieImageList(
             @PathVariable(name = "movie_id") int movie_id
     );
 }
