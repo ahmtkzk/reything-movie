@@ -9,3 +9,4 @@ public class ClientApiException extends FeignException {
     }
 
 }
+
