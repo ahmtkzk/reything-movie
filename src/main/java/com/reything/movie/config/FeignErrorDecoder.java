@@ -14,6 +14,7 @@ public class FeignErrorDecoder implements ErrorDecoder {
             return new ClientApiException(statusCode, message);
         }
         return null;
+
     }
 
 }
